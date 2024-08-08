@@ -1,8 +1,10 @@
 using UnityEngine;
 using TSwap.Stats;
+using TSwap.Animations;
 
 namespace TSwap.Movement
 {
+    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerMover : MonoBehaviour
     {
@@ -11,18 +13,22 @@ namespace TSwap.Movement
         [SerializeField] Transform groundChecker;
 
         Rigidbody rb;
+        PlayerAnimator animator;
 
         public bool TouchingGround => Physics.CheckSphere(groundChecker.position, stats.CheckerRadius, stats.GroundMask);
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            animator = GetComponent<PlayerAnimator>();
         }
 
         public void Move(Vector3 inputDirection)
         {
             Vector3 velocity = inputDirection.normalized * direction * stats.Speed * Time.fixedDeltaTime;
             rb.MovePosition(transform.position + velocity);
+
+            animator.TryFlip(inputDirection.x);
         }
 
         public void Jump()

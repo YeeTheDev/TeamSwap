@@ -9,6 +9,7 @@ namespace TSwap.Controls
     {
         [SerializeField] float speed;
 
+        int direction;
         Pooler pooler;
         Rigidbody rb;
         Shooter shooter;
@@ -23,9 +24,11 @@ namespace TSwap.Controls
             shooter = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooter>();
         }
 
+        private void OnEnable() => direction = shooter.Direction;
+
         private void FixedUpdate()
         {
-            rb.velocity = transform.right * speed * shooter.Direction;
+            rb.velocity = transform.right * speed * direction;
         }
 
         private void OnBecameInvisible() => pooler.Enqueue(gameObject);

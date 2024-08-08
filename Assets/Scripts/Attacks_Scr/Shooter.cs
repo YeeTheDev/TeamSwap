@@ -5,10 +5,12 @@ namespace TSwap.Attacks
 {
     public class Shooter : MonoBehaviour
     {
+        [SerializeField] float fireRate = 0.25f;
         [SerializeField] Transform rightMuzzle;
         [SerializeField] Transform leftMuzzle;
         [SerializeField] Pooler pooler;
 
+        float fireRateTimer;
         Transform currentMuzzle;
 
         public int Direction => currentMuzzle.position.x < currentMuzzle.parent.position.x ? -1 : 1;
@@ -19,8 +21,10 @@ namespace TSwap.Attacks
 
         public void Shoot()
         {
-            if (pooler.TryGetObject(out GameObject bullet))
+            if (Time.timeSinceLevelLoad > fireRateTimer && pooler.TryGetObject(out GameObject bullet))
             {
+                fireRateTimer = Time.timeSinceLevelLoad + fireRate;
+
                 bullet.transform.position = currentMuzzle.position;
                 bullet.SetActive(true);
             }

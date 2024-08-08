@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 841020548}
   - component: {fileID: 841020547}
   - component: {fileID: 841020549}
+  - component: {fileID: 841020550}
   m_Layer: 0
   m_Name: Right Player
   m_TagString: Untagged
@@ -671,6 +672,19 @@ MonoBehaviour:
   direction: 1
   stats: {fileID: 11400000, guid: 914df01cfb72d4502bd7bce3700b4f95, type: 2}
   groundChecker: {fileID: 765789083}
+--- !u!114 &841020550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841020544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dbd43026e9e486da5d0643ed673963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +852,7 @@ GameObject:
   - component: {fileID: 1383560479}
   - component: {fileID: 1383560478}
   - component: {fileID: 1383560482}
+  - component: {fileID: 1383560483}
   m_Layer: 0
   m_Name: Left Player
   m_TagString: Untagged
@@ -979,6 +994,19 @@ MonoBehaviour:
   direction: -1
   stats: {fileID: 11400000, guid: 914df01cfb72d4502bd7bce3700b4f95, type: 2}
   groundChecker: {fileID: 344690955}
+--- !u!114 &1383560483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383560477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dbd43026e9e486da5d0643ed673963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: -1
 --- !u!1 &1605713427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a5bf0e8dfe04254a387b81a77153e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0.25
   rightMuzzle: {fileID: 1375772742}
   leftMuzzle: {fileID: 1133856760}
   pooler: {fileID: 65492433}
