@@ -1,12 +1,14 @@
 using UnityEngine;
+using TSwap.Movement;
 
 namespace TSwap.Controls
 {
     public class Controller : MonoBehaviour
     {
         Swapper swapper;
-
         Vector3 inputDirection;
+
+        private Mover CurrentMover { get => swapper.CurrentMover; }
 
         private void Awake()
         {
@@ -19,11 +21,17 @@ namespace TSwap.Controls
             
             ReadSwapInput();
             ReadDirectionInput();
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                CurrentMover.Jump();
+            }
+            else if (Input.GetButtonUp("Jump")) { CurrentMover.HaltJump(); }
         }
 
         private void FixedUpdate()
         {
-            swapper.CurrentMover.Move(inputDirection);
+            CurrentMover.Move(inputDirection);
         }
 
         private void ReadSwapInput() { if (Input.GetButton("Swap")) { StartCoroutine(swapper.Swap()); } }

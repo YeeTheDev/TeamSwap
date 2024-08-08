@@ -521,7 +521,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &841020548
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpHeight: 2.1
   direction: 1
 --- !u!1 &963194225
 GameObject:
@@ -697,7 +698,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &1383560479
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -801,6 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpHeight: 2.1
   direction: -1
 --- !u!1 &1605713427
 GameObject:
