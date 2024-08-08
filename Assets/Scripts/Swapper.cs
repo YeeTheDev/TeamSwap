@@ -1,44 +1,51 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
+using TSwap.Movement;
 
-public class Swapper : MonoBehaviour
+namespace TSwap.Controls
 {
-    [SerializeField] float animationTime = 0.5f;
-    [SerializeField] Mover rightPlayer;
-    [SerializeField] Mover leftPlayer;
-
-    bool swapping;
-    bool inDefaultView = true;
-    Animator animator;
-
-    private void Awake() => animator = GetComponent<Animator>();
-
-    //TODO set someplace else? Maybe?
-    private void Update()
+    public class Swapper : MonoBehaviour
     {
-        if (Input.GetButton("Swap") && !swapping) { StartCoroutine(Swap()); }
-    }
+        [SerializeField] float swapTime = 1;
+        [SerializeField] Mover rightPlayer;
+        [SerializeField] Mover leftPlayer;
 
-    private IEnumerator Swap()
-    {
-        swapping = true;
+        bool inDefaultView = true;
+        Animator cameraAnimator;
 
-        inDefaultView = !inDefaultView;
-        ActivateControls(false);
+        public bool Swapping { get; private set; }
+        public Mover CurrentMover { get; private set; }
 
-        animator.SetTrigger("Swap");
-        yield return new WaitForSecondsRealtime(animationTime);
+        private void Awake()
+        {
+            CurrentMover = rightPlayer;
+            cameraAnimator = Camera.main.transform.GetComponentInParent<Animator>();
+        }
 
-        ActivateControls(true);
+        public IEnumerator Swap()
+        {
+            Swapping = true;
 
-        swapping = false;
-    }
+            inDefaultView = !inDefaultView;
 
-    private void ActivateControls(bool enable)
-    {
-        Time.timeScale = enable ? 1 : 0;
+            SetActivePlayer(false);
 
-        leftPlayer.enabled = inDefaultView ? false : enable ? true : false;
-        rightPlayer.enabled = !inDefaultView ? false : enable ? true : false;
+            cameraAnimator.SetTrigger("Swap");
+            yield return new WaitForSecondsRealtime(swapTime);
+
+            SetActivePlayer(true);
+
+            CurrentMover = inDefaultView ? rightPlayer : leftPlayer;
+
+            Swapping = false;
+        }
+
+        private void SetActivePlayer(bool enable)
+        {
+            Time.timeScale = enable ? 1 : 0;
+
+            leftPlayer.enabled = inDefaultView ? false : enable ? true : false;
+            rightPlayer.enabled = !inDefaultView ? false : enable ? true : false;
+        }
     }
 }
