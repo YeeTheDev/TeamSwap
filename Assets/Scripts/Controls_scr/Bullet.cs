@@ -8,6 +8,7 @@ namespace TSwap.Controls
     public class Bullet : MonoBehaviour
     {
         [SerializeField] float speed;
+        [SerializeField] float enqueueOffset = 0.1f;
 
         int direction;
         Pooler pooler;
@@ -29,8 +30,19 @@ namespace TSwap.Controls
         private void FixedUpdate()
         {
             rb.velocity = transform.right * speed * direction;
+
+            CheckIfInCameraBound();
         }
 
-        private void OnBecameInvisible() => pooler.Enqueue(gameObject);
+        private void CheckIfInCameraBound()
+        {
+            Vector3 checkPosition = Camera.main.WorldToViewportPoint(transform.position);
+            if (checkPosition.x > 1 + enqueueOffset || checkPosition.x < -enqueueOffset)
+            {
+                gameObject.SetActive(false);
+                pooler.Enqueue(gameObject);
+                transform.position = pooler.transform.position;
+            }
+        }
     }
 }
