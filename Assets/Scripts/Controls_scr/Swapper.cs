@@ -7,14 +7,16 @@ namespace TSwap.Controls
     public class Swapper : MonoBehaviour
     {
         [SerializeField] float swapTime = 1;
-        [SerializeField] Mover rightPlayer;
-        [SerializeField] Mover leftPlayer;
+        [SerializeField] PlayerMover rightPlayer;
+        [SerializeField] PlayerMover leftPlayer;
 
         bool inDefaultView = true;
         Animator cameraAnimator;
 
         public bool Swapping { get; private set; }
-        public Mover CurrentMover { get; private set; }
+        public PlayerMover CurrentMover { get; private set; }
+
+        public bool GetDefaultView => inDefaultView;
 
         private void Awake()
         {

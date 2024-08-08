@@ -5,7 +5,7 @@ namespace TSwap.Stats
     [CreateAssetMenu(fileName = "New Movement Stats", menuName = "Move Stats")]
     public class MoveStats : ScriptableObject
     {
-        [SerializeField] float speed;
+        [SerializeField] protected float speed;
         [SerializeField] float jumpHeight;
         [SerializeField] float jumpHaltSpeed = 0.5f;
         [SerializeField] float checkerRadius;

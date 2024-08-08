@@ -228,6 +228,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &65492430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 65492432}
+  - component: {fileID: 65492433}
+  m_Layer: 0
+  m_Name: Player Bullet Pooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &65492432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65492430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &65492433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65492430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b2d6d9d3e1c4927bcaae1af2bb157d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialAmount: 10
+  createsMore: 1
+  objectToPool: {fileID: 7790559392320413970, guid: 1d1592983e90141159a90ba74c7cab97, type: 3}
 --- !u!1 &344690954
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +603,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 765789083}
+  - {fileID: 1375772742}
   m_Father: {fileID: 1758778341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &841020547
@@ -617,16 +665,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 841020544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df879da7b164e4587b19d65deedc8a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e04f0b34129e42199430d9abc44b67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkerRadius: 0.45
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  groundChecker: {fileID: 765789083}
   direction: 1
   stats: {fileID: 11400000, guid: 914df01cfb72d4502bd7bce3700b4f95, type: 2}
+  groundChecker: {fileID: 765789083}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +763,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 634249859}
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+--- !u!1 &1133856759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133856760}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133856760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133856759}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1383560481}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1375772741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1375772742}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1375772742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375772741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 841020546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1383560477
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 344690955}
+  - {fileID: 1133856760}
   m_Father: {fileID: 1758778341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1383560482
@@ -864,18 +971,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383560477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df879da7b164e4587b19d65deedc8a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e04f0b34129e42199430d9abc44b67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkerRadius: 0.45
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  groundChecker: {fileID: 344690955}
   direction: -1
   stats: {fileID: 11400000, guid: 914df01cfb72d4502bd7bce3700b4f95, type: 2}
+  groundChecker: {fileID: 344690955}
 --- !u!1 &1605713427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,9 +1200,10 @@ GameObject:
   - component: {fileID: 1758778341}
   - component: {fileID: 1758778340}
   - component: {fileID: 1758778342}
+  - component: {fileID: 1758778343}
   m_Layer: 0
   m_Name: Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1148,6 +1252,21 @@ MonoBehaviour:
   swapTime: 1
   rightPlayer: {fileID: 841020549}
   leftPlayer: {fileID: 1383560482}
+--- !u!114 &1758778343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758778339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a5bf0e8dfe04254a387b81a77153e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightMuzzle: {fileID: 1375772742}
+  leftMuzzle: {fileID: 1133856760}
+  pooler: {fileID: 65492433}
 --- !u!1 &1894009395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,3 +1383,4 @@ SceneRoots:
   - {fileID: 1605713431}
   - {fileID: 689168482}
   - {fileID: 1758778341}
+  - {fileID: 65492432}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5266ee954834849c789965d6900988af, type: 3}
-  m_Name: Player_Move_stats
+  m_Name: Player_stats
   m_EditorClassIdentifier: 
   speed: 5
   jumpHeight: 2.1

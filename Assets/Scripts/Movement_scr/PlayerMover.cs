@@ -4,13 +4,15 @@ using TSwap.Stats;
 namespace TSwap.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Mover : MonoBehaviour
+    public class PlayerMover : MonoBehaviour
     {
         [Range(-1, 1)] [SerializeField] int direction = 1;
         [SerializeField] MoveStats stats;
         [SerializeField] Transform groundChecker;
 
         Rigidbody rb;
+
+        public bool TouchingGround => Physics.CheckSphere(groundChecker.position, stats.CheckerRadius, stats.GroundMask);
 
         private void Awake()
         {
@@ -23,14 +25,12 @@ namespace TSwap.Movement
             rb.MovePosition(transform.position + velocity);
         }
 
-        public bool TouchingGround => Physics.CheckSphere(groundChecker.position, stats.CheckerRadius, stats.GroundMask);
-
         public void Jump()
         {
             Vector3 jumpForce = rb.velocity;
             jumpForce.y = Mathf.Sqrt(stats.JumpHeight * 2 * Physics.gravity.y * -1);
 
-            rb.velocity = jumpForce; 
+            rb.velocity = jumpForce;
         }
 
         public void HaltJump()
