@@ -18,15 +18,10 @@ namespace TSwap.Controls
         private void Update()
         {
             if (swapper.Swapping) { return; }
-            
+
             ReadSwapInput();
             ReadDirectionInput();
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                CurrentMover.Jump();
-            }
-            else if (Input.GetButtonUp("Jump")) { CurrentMover.HaltJump(); }
+            ReadJumpInput();
         }
 
         private void FixedUpdate()
@@ -34,8 +29,20 @@ namespace TSwap.Controls
             CurrentMover.Move(inputDirection);
         }
 
-        private void ReadSwapInput() { if (Input.GetButton("Swap")) { StartCoroutine(swapper.Swap()); } }
+        private void ReadSwapInput()
+        {
+            if (CurrentMover.TouchingGround && Input.GetButton("Swap"))
+            {
+                StartCoroutine(swapper.Swap());
+            }
+        }
 
         private void ReadDirectionInput() => inputDirection = transform.right * Input.GetAxisRaw("Horizontal");
+
+        private void ReadJumpInput()
+        {
+            if (CurrentMover.TouchingGround && Input.GetButtonDown("Jump")) { CurrentMover.Jump(); }
+            else if (Input.GetButtonUp("Jump")) { CurrentMover.HaltJump(); }
+        }
     }
 }

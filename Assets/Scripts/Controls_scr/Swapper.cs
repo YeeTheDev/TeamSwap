@@ -34,6 +34,7 @@ namespace TSwap.Controls
             yield return new WaitForSecondsRealtime(swapTime);
 
             SetActivePlayer(true);
+            StopPlayers();
 
             CurrentMover = inDefaultView ? rightPlayer : leftPlayer;
 
@@ -46,6 +47,12 @@ namespace TSwap.Controls
 
             leftPlayer.enabled = inDefaultView ? false : enable ? true : false;
             rightPlayer.enabled = !inDefaultView ? false : enable ? true : false;
+        }
+
+        private void StopPlayers()
+        {
+            rightPlayer.Stop();
+            leftPlayer.Stop();
         }
     }
 }
