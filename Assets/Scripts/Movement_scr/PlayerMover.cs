@@ -12,9 +12,11 @@ namespace TSwap.Movement
         [SerializeField] MoveStats stats;
         [SerializeField] Transform groundChecker;
 
+        float pushTimer;
         Rigidbody rb;
         PlayerAnimator animator;
 
+        public bool IsPushed => Time.timeSinceLevelLoad < pushTimer;
         public bool TouchingGround => Physics.CheckSphere(groundChecker.position, stats.CheckerRadius, stats.GroundMask);
 
         private void Awake()
@@ -25,6 +27,8 @@ namespace TSwap.Movement
 
         public void Move(Vector3 inputDirection)
         {
+            if (IsPushed) { return; }
+
             Vector3 velocity = inputDirection.normalized * direction * stats.Speed * Time.fixedDeltaTime;
             rb.MovePosition(transform.position + velocity);
 
@@ -51,6 +55,12 @@ namespace TSwap.Movement
         }
 
         public void Stop() => rb.velocity = Vector3.zero;
+
+        public void Push(Vector3 force, float pushTime)
+        {
+            pushTimer = Time.timeSinceLevelLoad + pushTime;
+            rb.AddForce(force, ForceMode.Impulse);
+        }
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()
