@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using TSwap.Movement;
+using System;
 
 namespace TSwap.Controls
 {
     public class Swapper : MonoBehaviour
     {
+        public Action OnSwap;
+
         [SerializeField] float swapTime = 1;
         [SerializeField] PlayerMover rightPlayer;
         [SerializeField] PlayerMover leftPlayer;
@@ -27,6 +30,8 @@ namespace TSwap.Controls
         public IEnumerator Swap()
         {
             Swapping = true;
+
+            OnSwap?.Invoke();
 
             inDefaultView = !inDefaultView;
 
