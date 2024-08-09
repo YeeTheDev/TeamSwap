@@ -1,4 +1,3 @@
-using TSwap.Attacks;
 using UnityEngine;
 using Yee.Utility;
 
@@ -10,10 +9,8 @@ namespace TSwap.Controls
         [SerializeField] float speed;
         [SerializeField] float enqueueOffset = 0.1f;
 
-        int direction;
         Pooler pooler;
         Rigidbody rb;
-        Shooter shooter;
 
         public int Direction { get; set; }
 
@@ -21,11 +18,7 @@ namespace TSwap.Controls
         {
             pooler = GetComponentInParent<Pooler>();
             rb = GetComponent<Rigidbody>();
-
-            shooter = GameObject.FindGameObjectWithTag("Player").GetComponent<Shooter>();
         }
-
-        private void OnEnable() => direction = shooter.Direction;
 
         private void OnDisable()
         {
@@ -33,11 +26,12 @@ namespace TSwap.Controls
             gameObject.SetActive(false);
             pooler.Enqueue(gameObject);
             transform.position = pooler.transform.position;
+            transform.rotation = Quaternion.identity;
         }
 
         private void FixedUpdate()
         {
-            rb.velocity = transform.right * speed * direction;
+            rb.velocity = transform.right * speed;
 
             CheckIfInCameraBound();
         }

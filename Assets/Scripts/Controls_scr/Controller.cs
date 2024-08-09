@@ -5,9 +5,11 @@ using UnityEngine;
 namespace TSwap.Controls
 {
     [RequireComponent(typeof(Swapper))]
-    [RequireComponent(typeof(Shooter))]
     public class Controller : MonoBehaviour
     {
+        [SerializeField] Shooter rightPlayer;
+        [SerializeField] Shooter leftPlayer;
+
         Swapper swapper;
         Shooter shooter;
         Vector3 inputDirection;
@@ -17,7 +19,7 @@ namespace TSwap.Controls
         private void Awake()
         {
             swapper = GetComponent<Swapper>();
-            shooter = GetComponent<Shooter>();
+            shooter = rightPlayer;
         }
 
         private void Update()
@@ -40,7 +42,7 @@ namespace TSwap.Controls
             if (CurrentMover.TouchingGround && Input.GetButton("Swap"))
             {
                 StartCoroutine(swapper.Swap());
-                shooter.SwapMuzzles(swapper.GetDefaultView);
+                shooter = shooter == rightPlayer ? leftPlayer : rightPlayer;
             }
         }
 
@@ -54,7 +56,8 @@ namespace TSwap.Controls
 
         private void ShootInput()
         {
-            if (Input.GetButtonDown("Shoot")) { shooter.Shoot(); }
+            if (Input.GetButtonDown("Shoot")) { shooter.TryShoot(false); }
+            else if (Input.GetButtonDown("Transfer")) { shooter.TryShoot(true); } 
         }
     }
 }

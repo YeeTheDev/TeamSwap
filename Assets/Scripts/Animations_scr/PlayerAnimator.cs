@@ -4,7 +4,7 @@ namespace TSwap.Animations
 {
     public class PlayerAnimator : MonoBehaviour
     {
-        [Range(-1, 0)][SerializeField] int direction;
+        [Range(-1, 1)][SerializeField] int direction;
 
         bool facingLeft;
 
