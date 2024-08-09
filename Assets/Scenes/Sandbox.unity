@@ -369,8 +369,8 @@ MonoBehaviour:
   m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_SubmitButton: Shoot
+  m_CancelButton: Swap
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1192,6 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37560eff0ce9d401b8b2a64a948b7557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashDuration: 1
   weaponAmmo: {fileID: 24874800}
   transferAmmo: {fileID: 1751815614}
   shooter: {fileID: 841020551}
@@ -1986,6 +1987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37560eff0ce9d401b8b2a64a948b7557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashDuration: 1
   weaponAmmo: {fileID: 1814717844}
   transferAmmo: {fileID: 1344783655}
   shooter: {fileID: 1383560484}

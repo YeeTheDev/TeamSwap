@@ -8,6 +8,7 @@ namespace TSwap.UI
 {
     public class Ammo_UI : MonoBehaviour
     {
+        [SerializeField] float flashDuration = 0.25f;
         [SerializeField] Image weaponAmmo;
         [SerializeField] Image transferAmmo;
         [SerializeField] Shooter shooter;
@@ -33,6 +34,24 @@ namespace TSwap.UI
                 amountToFill += Time.deltaTime;
                 image.fillAmount = amountToFill / data.stats.ReloadTime;
             }
+
+            StartCoroutine(Flash(image));
+        }
+
+        private IEnumerator Flash(Image image)
+        {
+            Color defaultColor = image.color;
+            float colorTimer = 0;
+
+            while (colorTimer < flashDuration)
+            {
+                yield return new WaitForEndOfFrame();
+
+                image.color = Color.Lerp(Color.white, defaultColor, colorTimer / flashDuration);
+                colorTimer += Time.deltaTime;
+            }
+
+            image.color = defaultColor;
         }
     }
 }
