@@ -8,7 +8,8 @@ namespace TSwap.Attacks
         [SerializeField] float fireRate = 0.25f;
         [SerializeField] Transform rightMuzzle;
         [SerializeField] Transform leftMuzzle;
-        [SerializeField] Pooler pooler;
+        [SerializeField] Pooler bulletPooler;
+        [SerializeField] Pooler transferPooler;
 
         float fireRateTimer;
         Transform currentMuzzle;
@@ -21,7 +22,7 @@ namespace TSwap.Attacks
 
         public void Shoot()
         {
-            if (Time.timeSinceLevelLoad > fireRateTimer && pooler.TryGetObject(out GameObject bullet))
+            if (Time.timeSinceLevelLoad > fireRateTimer && bulletPooler.TryGetObject(out GameObject bullet))
             {
                 fireRateTimer = Time.timeSinceLevelLoad + fireRate;
 
