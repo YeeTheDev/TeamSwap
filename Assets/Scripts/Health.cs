@@ -6,14 +6,14 @@ namespace TSwap.Stats
     {
         [SerializeField] int maxHealth = 3;
 
-        int currentHealth;
+        public int CurrentHealth { get; private set; }
 
-        private void Awake() => currentHealth = maxHealth;
+        private void Awake() => CurrentHealth = maxHealth;
 
         public int TakeDamage()
         {
-            currentHealth--;
-            return currentHealth;
+            CurrentHealth =  Mathf.Clamp(CurrentHealth - 1, 0, maxHealth);
+            return CurrentHealth;
         }
     }
 }

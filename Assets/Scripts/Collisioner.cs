@@ -1,16 +1,18 @@
 using TSwap.Stats;
 using UnityEngine;
 using TSwap.Movement;
+using Yee.Math;
+using System;
 
 namespace TSwap.Collisions
 {
     public class Collisioner : MonoBehaviour
     {
-        [SerializeField] Vector3 damageForce;
-        [SerializeField] float pushTime = 0.5f;
-        [SerializeField] string damagerTag;
-        [SerializeField] string itemTag;
+        public Action<int> OnTakeDamage;
 
+        [SerializeField] DamageStats stats;
+
+        float invulnerableTimer;
         Health health;
         PlayerMover mover;
 
@@ -22,17 +24,22 @@ namespace TSwap.Collisions
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(damagerTag))
+            if (other.CompareTag(stats.DamagerTag) && Time.timeSinceLevelLoad >= invulnerableTimer)
             {
-                if (health.TakeDamage() <= 0)
+                int currentHealth = health.TakeDamage();
+                OnTakeDamage?.Invoke(currentHealth);
+
+                if (currentHealth <= 0)
                 {
                     Debug.Log("You lose!");
                     return;
                 }
 
-                Vector3 force = (transform.position - other.transform.position).normalized * damageForce.x;
-                force.y = damageForce.y;
-                mover.Push(force, pushTime);
+
+                invulnerableTimer = Time.timeSinceLevelLoad + stats.InvulnerabilityTime;
+                Vector3 force = (transform.position - other.transform.position).normalized.Multiply(stats.DamageForce);
+                force.y *= force.y < 0 ? -1 : 1;
+                mover.Push(force, stats.PushTime);
             }
         }
     }

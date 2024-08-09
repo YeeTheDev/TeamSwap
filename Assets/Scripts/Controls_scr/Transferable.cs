@@ -1,5 +1,5 @@
 using UnityEngine;
-using Yee;
+using Yee.Math;
 
 namespace TSwap.Controls
 {

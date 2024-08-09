@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Yee
+namespace Yee.Math
 {
     public static class Math
     {
