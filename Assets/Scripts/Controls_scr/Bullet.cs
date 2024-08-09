@@ -27,6 +27,14 @@ namespace TSwap.Controls
 
         private void OnEnable() => direction = shooter.Direction;
 
+        private void OnDisable()
+        {
+            rb.velocity = Vector3.zero;
+            gameObject.SetActive(false);
+            pooler.Enqueue(gameObject);
+            transform.position = pooler.transform.position;
+        }
+
         private void FixedUpdate()
         {
             rb.velocity = transform.right * speed * direction;
@@ -39,9 +47,7 @@ namespace TSwap.Controls
             Vector3 checkPosition = Camera.main.WorldToViewportPoint(transform.position);
             if (checkPosition.x > 1 + enqueueOffset || checkPosition.x < -enqueueOffset)
             {
-                gameObject.SetActive(false);
-                pooler.Enqueue(gameObject);
-                transform.position = pooler.transform.position;
+                OnDisable();
             }
         }
     }

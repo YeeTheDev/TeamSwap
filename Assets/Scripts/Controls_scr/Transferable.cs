@@ -10,11 +10,13 @@ namespace TSwap.Controls
         [SerializeField] LayerMask obstacleMask;
 
         Vector3 defaultPosition;
+        Animator animator;
 
         private Vector3 TransferPoint => transferPoint + transform.position;
 
         private void Awake()
         {
+            animator = GetComponent<Animator>();
             defaultPosition = transform.position;
         }
 
@@ -22,7 +24,9 @@ namespace TSwap.Controls
         {
             if (other.CompareTag("Transfer Bullet"))
             {
-                if (CheckIfOccupied()) { return; }
+                other.gameObject.SetActive(false);
+
+                if (CheckIfOccupied()) { animator.SetTrigger("FailSwap"); return; }
 
                 transform.position = transform.position == defaultPosition ? TransferPoint : defaultPosition;
             }
@@ -38,7 +42,8 @@ namespace TSwap.Controls
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
-            Vector3 pointToCheck = transform.position == defaultPosition ? TransferPoint : defaultPosition;
+            Vector3 pointToCheck = TransferPoint;
+            if (Application.isPlaying && transform.position != defaultPosition) { pointToCheck = defaultPosition; }
             Gizmos.DrawWireCube(pointToCheck, box.size.Multiply(transform.localScale));
         }
 #endif
