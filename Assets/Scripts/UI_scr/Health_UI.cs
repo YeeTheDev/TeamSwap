@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using TSwap.Collisions.Interactions;
 using UnityEngine;
-using TSwap.Collisions;
 
 public class Health_UI : MonoBehaviour
 {
     [SerializeField] RectTransform healthBar;
     [SerializeField] float sizePerHeart;
-    [SerializeField] Collisioner collisioner;
+    [SerializeField] DamageTaker collisioner;
 
     private void OnEnable() => collisioner.OnTakeDamage += UpdateHealthUI;
     private void OnDisable() => collisioner.OnTakeDamage -= UpdateHealthUI;

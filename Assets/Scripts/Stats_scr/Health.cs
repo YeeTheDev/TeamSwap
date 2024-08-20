@@ -1,14 +1,19 @@
 using UnityEngine;
+using System;
 
 namespace TSwap.Stats
 {
-    public class Health : MonoBehaviour
+    [Serializable]
+    public class Health
     {
         [SerializeField] int maxHealth = 3;
 
         public int CurrentHealth { get; private set; }
 
-        private void Awake() => CurrentHealth = maxHealth;
+        public Health()
+        {
+            CurrentHealth = maxHealth;
+        }
 
         public int TakeDamage()
         {
